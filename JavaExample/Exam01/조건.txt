@@ -1,0 +1,46 @@
+1. Data format
+
+   1) studentlist.csv
+	  name, phoneNumber, grade
+   ex) lee, 010-1111-1234, 4
+   	   lee, 010-3231-6543, 2
+   	   			...
+   	   			
+2. Classes
+
+   1) Student  		 => Describe a one student
+   2) DataReader     => Read CSV file and return Student object list.
+   3) StudentManager => Handle stuent data
+   
+   
+3. Usage
+
+   public static void main(String[] args)
+   {
+   		// Create data reader.
+        DataReader dataReader = new DataReader(new File("file-path"));
+        
+        // Read data from data reader
+        ArrayList<Student> students = dataReader.readAllData();
+   		
+   		// Create student manager
+   		StudentManager sManager = new StudentManager();
+   		
+   		// Add student
+   		for(int i=0;i<students.size();i++)
+   		{
+   			Student student = students.get(i);
+   			sManager.add(student);
+   		}
+   		
+   		// Add student
+   		for(Student currentStudent : sManager.getAllStudents())
+   		{
+   			System.out.println("Name        : "+currentStudent.getName());			// name is String
+   			System.out.println("PhoneNumber : "+currentStudent.getPhoneNumber());	// phoneNumber is String
+   			System.out.println("Grade       : "+currentStudent.getGrade());   		// grade is int
+   		}
+   		
+   }
+
+
